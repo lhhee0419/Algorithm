@@ -8,10 +8,15 @@ namespace AlgorithmTest
         {
             string[] vs = Console.ReadLine().Split(" ");
 
-            double a = Convert.ToDouble(vs[0]);
-            double b = Convert.ToDouble(vs[1]);
+            int A = Convert.ToInt32(vs[0]);
+            int B = Convert.ToInt32(vs[1]);
+            int C = Convert.ToInt32(vs[2]);
 
-            Console.WriteLine(a / b);
+            Console.WriteLine((A + B) % C);
+            Console.WriteLine(((A % C) + (B % C)) % C);
+            Console.WriteLine((A * B) % C);
+            Console.WriteLine(((A % C) * (B % C)) % C);
+
         }
     }
 }
