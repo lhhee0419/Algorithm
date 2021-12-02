@@ -6,10 +6,12 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("\\    /\\");
-            Console.WriteLine(" )  (  ')");
-            Console.WriteLine("(  /   )");
-            Console.WriteLine(" \\(__) |");
+            string[] vs = Console.ReadLine().Split(" ");
+
+            double a = Convert.ToDouble(vs[0]);
+            double b = Convert.ToDouble(vs[1]);
+
+            Console.WriteLine(a / b);
         }
     }
 }
