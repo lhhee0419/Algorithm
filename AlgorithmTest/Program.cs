@@ -6,17 +6,21 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            string[] vs = Console.ReadLine().Split(" ");
+            string[] inputData = Console.ReadLine().Split(" ");
 
-            int A = Convert.ToInt32(vs[0]);
-            int B = Convert.ToInt32(vs[1]);
-            int C = Convert.ToInt32(vs[2]);
+            int a = Convert.ToInt32(inputData[0]);
+            int b = Convert.ToInt32(inputData[1]);
 
-            Console.WriteLine((A + B) % C);
-            Console.WriteLine(((A % C) + (B % C)) % C);
-            Console.WriteLine((A * B) % C);
-            Console.WriteLine(((A % C) * (B % C)) % C);
-
+            if(a > b)
+            {
+                Console.WriteLine(">");
+            }else if(a < b)
+            {
+                Console.WriteLine("<");
+            }else if(a == b)
+            {
+                Console.WriteLine("==");
+            }
         }
     }
 }
