@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 
 namespace AlgorithmTest
 {
@@ -8,42 +7,28 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            int inputCount = Convert.ToInt32(Console.ReadLine());
+            string[] inputData = Console.ReadLine().Split(" ");
 
-            List<double> overAverage = new List<double>();
-            
-            for (int i = 0; i < inputCount; i++)
+            int a = Convert.ToInt32(inputData[0]);
+
+            if(a >= 90 && a<= 100)
             {
-                string[] inputData = Console.ReadLine().Split(" ");
-                List<int> scorelist = new List<int>();
-
-                foreach (string item in inputData)
-                {   
-                    scorelist.Add(Convert.ToInt32(item));
-                }
-
-                double repeatCount = scorelist[0];
-
-                scorelist.RemoveAt(0);
-
-                double average = scorelist.Average();
-                double count = 0;
-
-                foreach (int score in scorelist)
-                {
-                    if(score > average)
-                    {
-                        count++;
-                    }
-                }
-
-                double percent = count / repeatCount * 100;
-                overAverage.Add(percent);
+                Console.WriteLine("A");
             }
-
-            foreach (double percent in overAverage)
+            else if (a >= 80 && a <= 89)
             {
-                Console.WriteLine(String.Format("{0:0.000}", percent) + "%");
+                Console.WriteLine("B");
+            }
+            else if (a >= 70 && a <= 79)
+            {
+                Console.WriteLine("C");
+            }
+            else if (a >= 60 && a <= 69)
+            {
+                Console.WriteLine("D");
+            }else
+            {
+                Console.WriteLine("F");
             }
         }
     }
