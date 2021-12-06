@@ -6,16 +6,23 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            string[] inputData = Console.ReadLine().Split(" ");
+            int x = Convert.ToInt32(Console.ReadLine());
+            int y = Convert.ToInt32(Console.ReadLine());
 
-            int year = Convert.ToInt32(inputData[0]);
-
-            if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+            if(x >= 0 && y >= 0)
             {
                 Console.WriteLine("1");
-            }else
+            }else if(x >= 0 && y<=0)
             {
-                Console.WriteLine("0");
+                Console.WriteLine("4");
+            }
+            else if (x <= 0 && y >= 0)
+            {
+                Console.WriteLine("2");
+            }
+            else
+            {
+                Console.WriteLine("3");
             }
         }
     }
