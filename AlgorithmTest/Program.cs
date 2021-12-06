@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace AlgorithmTest
 {
@@ -9,26 +8,14 @@ namespace AlgorithmTest
         {
             string[] inputData = Console.ReadLine().Split(" ");
 
-            int a = Convert.ToInt32(inputData[0]);
+            int year = Convert.ToInt32(inputData[0]);
 
-            if(a >= 90 && a<= 100)
+            if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
             {
-                Console.WriteLine("A");
-            }
-            else if (a >= 80 && a <= 89)
-            {
-                Console.WriteLine("B");
-            }
-            else if (a >= 70 && a <= 79)
-            {
-                Console.WriteLine("C");
-            }
-            else if (a >= 60 && a <= 69)
-            {
-                Console.WriteLine("D");
+                Console.WriteLine("1");
             }else
             {
-                Console.WriteLine("F");
+                Console.WriteLine("0");
             }
         }
     }
