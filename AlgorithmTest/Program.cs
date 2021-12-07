@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AlgorithmTest
 {
@@ -6,21 +7,17 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            string[] inputData = Console.ReadLine().Split(" ");
+            while(true)
+            {   
+                string[] inputData = Console.ReadLine().Split(" ");
 
-            int n = Convert.ToInt32(inputData[0]);
-            int x = Convert.ToInt32(inputData[1]);
+                int a = Convert.ToInt32(inputData[0]);
+                int b = Convert.ToInt32(inputData[1]);
 
-            string[] array = Console.ReadLine().Split(" ");
+                if (a == 0 && b == 0)
+                    break;
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                int value = Convert.ToInt32(array[i]);
-
-                if(value < x)
-                {
-                    Console.Write(value + " ");
-                }
+                Console.WriteLine(a + b);
             }
         }
     }
