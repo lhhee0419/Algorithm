@@ -6,15 +6,21 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            int n = Convert.ToInt32(Console.ReadLine());
+            string[] inputData = Console.ReadLine().Split(" ");
 
-            for (int i = 1; i < n + 1; i++)
+            int n = Convert.ToInt32(inputData[0]);
+            int x = Convert.ToInt32(inputData[1]);
+
+            string[] array = Console.ReadLine().Split(" ");
+
+            for (int i = 0; i < array.Length; i++)
             {
-                for (int j = 1; j <= i; j++)
+                int value = Convert.ToInt32(array[i]);
+
+                if(value < x)
                 {
-                    Console.Write("*");
+                    Console.Write(value + " ");
                 }
-                Console.WriteLine();
             }
         }
     }
