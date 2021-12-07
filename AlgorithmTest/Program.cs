@@ -6,28 +6,12 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            string[] inputData = Console.ReadLine().Split(" ");
+            int n = Convert.ToInt32(Console.ReadLine());
 
-            int h = Convert.ToInt32(inputData[0]);
-            int m = Convert.ToInt32(inputData[1]);
-
-            if( m >= 45)
+            for (int i = 1; i < 10; i++)
             {
-                m = m - 45;
-            }else
-            {
-                if(h == 0)
-                {
-                    h = 23;
-                   
-                }else
-                {
-                    h = h - 1;
-                }
-                m = 60 - (45 - m);
+                Console.WriteLine($"{n} * {i} = {n * i}");
             }
-
-            Console.WriteLine(h + " " + m);
         }
     }
 }
