@@ -8,30 +8,17 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            string s = Console.ReadLine();
-            Dictionary<char, int> dicCount = new Dictionary<char, int>();
-            
-            for (int i =65; i <= 90; i++)
+            string[] s = Console.ReadLine().Split(" ");
+            List<string> vs = new List<string>();
+
+            foreach (string item in s)
             {
-                dicCount.Add(Convert.ToChar(i), 0);
+                if (item.Trim() != "")
+                    vs.Add(item);
+                    
             }
-            
-            foreach (char item in s.ToUpper())
-            {
-                if(dicCount.ContainsKey(item))
-                {
-                    dicCount[item] += 1;
-                }
-            }
-            int max = dicCount.Values.Max();
-            char result = dicCount.FirstOrDefault( x => x.Value == max).Key;
 
-            dicCount.Remove(result);
-
-            if (dicCount.Values.Max() == max)
-                result = '?';
-
-            Console.WriteLine(result);
+            Console.WriteLine(vs.Count);
         }
     }
 }
