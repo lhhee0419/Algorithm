@@ -8,17 +8,9 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            string[] s = Console.ReadLine().Split(" ");
-            List<string> vs = new List<string>();
+            string s = Console.ReadLine();
 
-            foreach (string item in s)
-            {
-                if (item.Trim() != "")
-                    vs.Add(item);
-                    
-            }
-
-            Console.WriteLine(vs.Count);
+            Console.WriteLine(Convert.ToInt32(Convert.ToChar(s)));
         }
     }
 }
