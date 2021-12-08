@@ -9,15 +9,49 @@ namespace AlgorithmTest
         static void Main(string[] args)
         {
             int n = Convert.ToInt32(Console.ReadLine());
-            string[] inputData = Console.ReadLine().Split(" ");
 
-            List<int> numList = new List<int>();
+            int r5 = n % 5;
+            int q5 = n / 5;
+            int result = -1;
 
-            foreach (string item in inputData)
+            if (r5 > 0)
             {
-                numList.Add(Convert.ToInt32(item));
+                if (r5 % 3 == 0)
+                {
+                    result = (r5 / 3) + q5;
+                }
+                else
+                {
+                    if (n % 3 == 0)
+                    {
+                        result = n / 3;
+                    }
+
+                    if (q5 > 0)
+                    {
+                        for (int i = q5 - 1; i >= 1; i--)
+                        {
+                            if ((n - i * 5) % 3 == 0)
+                            {
+                                result = i + ((n - i * 5) / 3);
+                                break;
+                            }
+                        }
+                    }
+                }
             }
-            Console.Write(numList.Min() + " " + numList.Max());
+            else
+            {
+                if (n % 5 == 0)
+                {
+                    result = n / 5;
+                }
+                else if (n % 3 == 0)
+                {
+                    result = n / 3;
+                }
+            }
+            Console.WriteLine(result);
         }
     }
 }
