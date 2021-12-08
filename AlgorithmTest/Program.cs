@@ -8,49 +8,29 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            int n = Convert.ToInt32(Console.ReadLine());
-
-            int r5 = n % 5;
-            int q5 = n / 5;
-            int result = -1;
-
-            if (r5 > 0)
+            string s = Console.ReadLine();
+            Dictionary<char, int> dicCount = new Dictionary<char, int>();
+            
+            for (int i =65; i <= 90; i++)
             {
-                if (r5 % 3 == 0)
+                dicCount.Add(Convert.ToChar(i), 0);
+            }
+            
+            foreach (char item in s.ToUpper())
+            {
+                if(dicCount.ContainsKey(item))
                 {
-                    result = (r5 / 3) + q5;
-                }
-                else
-                {
-                    if (n % 3 == 0)
-                    {
-                        result = n / 3;
-                    }
-
-                    if (q5 > 0)
-                    {
-                        for (int i = q5 - 1; i >= 1; i--)
-                        {
-                            if ((n - i * 5) % 3 == 0)
-                            {
-                                result = i + ((n - i * 5) / 3);
-                                break;
-                            }
-                        }
-                    }
+                    dicCount[item] += 1;
                 }
             }
-            else
-            {
-                if (n % 5 == 0)
-                {
-                    result = n / 5;
-                }
-                else if (n % 3 == 0)
-                {
-                    result = n / 3;
-                }
-            }
+            int max = dicCount.Values.Max();
+            char result = dicCount.FirstOrDefault( x => x.Value == max).Key;
+
+            dicCount.Remove(result);
+
+            if (dicCount.Values.Max() == max)
+                result = '?';
+
             Console.WriteLine(result);
         }
     }
