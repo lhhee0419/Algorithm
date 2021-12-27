@@ -6,18 +6,24 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            int a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(Recursive(a));
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine(Recursive(n));
         }
 
         static int Recursive(int num)
         {
-            if(num == 0 || num ==1)
+            if (num == 0)
+            {
+                return 0;
+            }
+
+            if (num == 1)
             {
                 return 1;
             }
-            
-            return num * Recursive(num-1);
+
+            return Recursive(num - 1) + Recursive(num - 2);
         }
     }
 }
