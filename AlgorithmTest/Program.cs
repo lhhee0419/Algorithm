@@ -6,9 +6,9 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            string id = Console.ReadLine();
+            int year = int.Parse(Console.ReadLine());
 
-            Console.WriteLine(id + "??!");
+            Console.WriteLine(year - 543);
         }
     }
 }
