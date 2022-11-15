@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AlgorithmTest
 {
@@ -7,35 +8,43 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            //{{60, 50}, {30, 70}, {60, 30}, {80, 40}}	4000
-            //{{10, 7}, {12, 3}, {8, 15}, {14, 7}, {5, 15}}	120
-            //{{14, 4}, {19, 6}, {6, 16}, {18, 7}, {7, 11}}	133
-            int[,] sizes = new int[,] { { 60, 50 }, { 30, 70 }, {60, 30}, {80, 40} };
+            //brown yellow  return
+            //10  2  [4, 3]
+            //8   1  [3, 3]
+            //24  24 [8, 6]
 
-            int answer = 0;
+            int brown = 10;
+            int yellow = 2;
 
-            int max1 = 0;
-            int max2 = 0;
+            List<int> answer = new List<int>();
+            Dictionary<int, int> lst = new Dictionary<int, int>();
 
-            for (int i = 0; i < sizes.Length / 2; i++)
+            int sum = brown + yellow;
+
+            for (int i = 1; i <= sum / 2; i++)
             {
-                if(sizes[i,0].CompareTo(sizes[i, 1]) == -1) //왼쪽값 보다 오른쪽 값이 클 경우 위치 변경
+                if (i < 3) continue;
+
+                int q = sum / i;
+
+                if (sum % i == 0)
                 {
-                    int x = sizes[i, 0];
-                    sizes[i, 0] = sizes[i, 1]; 
-                    sizes[i, 1] = x; 
+                    if (brown == (i * 2) + ((q - 2) * 2))
+                    {
+                        if(lst.ContainsValue(i))
+                        {
+                            lst.Remove(q);
+                        }
+
+                        lst.Add(i, q);
+                    }
                 }
-
-                if (max1.CompareTo(sizes[i, 0]) == -1)
-                    max1 = sizes[i, 0];
-
-                if (max2.CompareTo(sizes[i, 1]) == -1)
-                    max2 = sizes[i, 1];
             }
 
-            answer = max1 * max2;
+            answer.AddRange(lst.Keys);
+            answer.AddRange(lst.Values);
 
-            Console.WriteLine(answer);
+            Console.WriteLine(answer.ToArray());
         }
     }
 }
