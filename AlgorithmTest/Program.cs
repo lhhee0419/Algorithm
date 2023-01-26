@@ -8,42 +8,43 @@ namespace AlgorithmTest
     {
         static void Main(string[] args)
         {
-            //brown yellow  return
-            //10  2  [4, 3]
-            //8   1  [3, 3]
-            //24  24 [8, 6]
-
-            int brown = 10;
-            int yellow = 2;
+            string today = "2022.05.19";
+            string[] terms = new string[] { "A 6", "B 12", "C 3" };
+            string[] privacies = new string[] { "2021.05.02 A"
+                                              , "2021.07.01 B"
+                                              , "2022.02.19 C"
+                                              , "2022.02.20 C"};
 
             List<int> answer = new List<int>();
-            Dictionary<int, int> lst = new Dictionary<int, int>();
 
-            int sum = brown + yellow;
+            DateTime Dttoday = Convert.ToDateTime(today);
 
-            for (int i = 1; i <= sum / 2; i++)
+            Dictionary<string, int> dicterms = new Dictionary<string, int>();
+
+            foreach (string item in terms)
             {
-                if (i < 3) continue;
+                string[] a = item.Split(' ');
 
-                int q = sum / i;
-
-                if (sum % i == 0)
-                {
-                    if (brown == (i * 2) + ((q - 2) * 2))
-                    {
-                        if(lst.ContainsValue(i))
-                        {
-                            lst.Remove(q);
-                        }
-
-                        lst.Add(i, q);
-                    }
-                }
+                dicterms.Add(a[0], Convert.ToInt32(a[1]));
             }
 
-            answer.AddRange(lst.Keys);
-            answer.AddRange(lst.Values);
+            int seq = 1;
 
+            foreach (string item in privacies)
+            {
+                string[] a = item.Split(' ');
+
+                DateTime b = Convert.ToDateTime(a[0]);
+
+                if(b.AddMonths(dicterms[a[1]]).AddDays(-1).CompareTo(Dttoday) < 0)
+                {
+                    answer.Add(seq);
+                }
+
+                seq++;
+            }
+
+      
             Console.WriteLine(answer.ToArray());
         }
     }
