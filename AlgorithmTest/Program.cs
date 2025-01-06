@@ -4,48 +4,68 @@ using System.Linq;
 
 namespace AlgorithmTest
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            string today = "2022.05.19";
-            string[] terms = new string[] { "A 6", "B 12", "C 3" };
-            string[] privacies = new string[] { "2021.05.02 A"
-                                              , "2021.07.01 B"
-                                              , "2022.02.19 C"
-                                              , "2022.02.20 C"};
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			string video_len = "34:33";
+			string pos = "13:00";
+			string op_start = "00:55";
+			string op_end = "02:55";
+			string[] commands = new string[] { "next", "prev" };
+			string answer = "";
 
-            List<int> answer = new List<int>();
 
-            DateTime Dttoday = Convert.ToDateTime(today);
+			TimeSpan tpPos = new TimeSpan(0, 0, Convert.ToInt16(pos.Substring(0, 2)), Convert.ToInt16(pos.Substring(3, 2)), 0);
+			TimeSpan tpOSt = new TimeSpan(0, 0, Convert.ToInt16(op_start.Substring(0, 2)), Convert.ToInt16(op_start.Substring(3, 2)), 0);
+			TimeSpan tpOEd = new TimeSpan(0, 0, Convert.ToInt16(op_end.Substring(0, 2)), Convert.ToInt16(op_end.Substring(3, 2)), 0);
+			TimeSpan tpEnd = new TimeSpan(0, 0, Convert.ToInt16(video_len.Substring(0, 2)), Convert.ToInt16(video_len.Substring(3, 2)), 0);
 
-            Dictionary<string, int> dicterms = new Dictionary<string, int>();
+			for (int i = 0; i < commands.Length; i++)
+			{
+				if (commands[i] == "next")
+				{
+					if (tpOSt <= tpPos && tpPos <= tpOEd)  //이동 후 위치가 오프닝 위치인 경우 건너뛰기
+					{
+						tpPos = tpOEd;
+					}
 
-            foreach (string item in terms)
-            {
-                string[] a = item.Split(' ');
+					tpPos += new TimeSpan(0, 0, 10);
 
-                dicterms.Add(a[0], Convert.ToInt32(a[1]));
-            }
+					//남은 시간이 10초 미만일 경우 
+					if ((tpEnd - tpPos).TotalSeconds < 10)
+					{
+						tpPos = tpEnd;
+					}
+					else if (tpOSt <= tpPos && tpPos <= tpOEd)  //이동 후 위치가 오프닝 위치인 경우 건너뛰기
+					{
+						tpPos = tpOEd;
+					}
+				}
+				else
+				{
+					//prev
+					if (tpOSt <= tpPos && tpPos <= tpOEd)  //이동 후 위치가 오프닝 위치인 경우 건너뛰기
+					{
+						tpPos = tpOEd;
+					}
 
-            int seq = 1;
+					tpPos -= new TimeSpan(0, 0, 10);
 
-            foreach (string item in privacies)
-            {
-                string[] a = item.Split(' ');
+					if (tpPos.TotalSeconds < 10)
+					{
+						tpPos = new TimeSpan(0, 0, 0);
+					}
+					else if (tpOSt <= tpPos && tpPos <= tpOEd)  //이동 후 위치가 오프닝 위치인 경우 건너뛰기
+					{
+						tpPos = tpOEd;
+					}
+				}
+			}
 
-                DateTime b = Convert.ToDateTime(a[0]);
+			answer = tpPos.ToString(@"mm\:ss");
+			Console.Write(answer);
 
-                if(b.AddMonths(dicterms[a[1]]).AddDays(-1).CompareTo(Dttoday) < 0)
-                {
-                    answer.Add(seq);
-                }
-
-                seq++;
-            }
-
-      
-            Console.WriteLine(answer.ToArray());
-        }
-    }
+		}
+	}
 }
